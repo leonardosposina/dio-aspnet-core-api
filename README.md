@@ -56,11 +56,12 @@ https://localhost:5001/api/v1/infectado
 
 ### 🛠 Heroku Deploy
 
-O projeto foi publicado em um container no **Heroku: Cloud Application Platform** conforme os passos abaixo:
+Depois de "dockerizado", o projeto foi armazenado e publicado no registro de containers do **Heroku: Cloud Application Platform** conforme os passos abaixo:
 
 #### Docker Image
 
 1 - Um arquivo *Dockerfile* foi criado na raiz do projeto com as instruções para a geração da imagem **Docker**.
+
 2 - A imagem **Docker** do projeto foi gerada através do seguinte comando:
 
 ```console
