@@ -2,9 +2,33 @@
 
 ## Construindo um projeto de uma ASP.NET Core API integrada ao MongoDB
 
-Projeto de uma *ASP.NET Core API Application* integrada a um cluster MongoDB no Atlas (Cloud DBaaS for MongoDB).
+Projeto de uma *ASP.NET Core API Application* que foi "*dockerizada*" e posteriormente armazenada e publicada no registro de containers do **Heroku** (*Cloud Application Platform*). Além disso, a aplicação foi integrada a um cluster **MongoDB** com 3 nodes em replica set no **Atlas** (*Cloud DBaaS for MongoDB*).
 
-[🖱 Clique aqui para ver online!][heroku-deploy]
+![ASP.NET Core API Application](docs/splash.png)
+
+### ⚙ REST API
+
+| Endpoint: | Method: | Descrição: | Response Status Code: |
+|-----------|---------|--------------|-----------------------|
+| /infectado | GET  | Retorna uma lista com todos os registros. | 200 / 404 |
+| /infectado/{id} | GET | Retorna um registro específico. | 200 / 404 |
+| /infectado | POST | Cria um novo registro no sistema. | 201 / 400 |
+| /infectado/{id} | PUT | Edita um registro específico. | 200 / 404 |
+| /infectado/{id} | DELETE | Deleta um registro específico. | 204 / 404 |
+
+[🖱 Clique aqui para acessar o endpoint da REST API!][heroku-deploy]
+
+⚠ Importante: Esse *app container* (free dyno) entra em modo *sleep* depois de 30 minutos de inatividade. 😴
+
+---
+
+### 📈 MongoDB Charts
+
+O **MongoDB Charts** foi habilitado para a visualização dos dados em um dashboard que contabiliza os registros por sexo e renderiza os dados de geolocalização em um mapa.
+
+![MongoDB Charts](docs/mongodb-charts.png)
+
+[🖱 Clique aqui para acessar o dashboard MongoDB Charts!][mongodb-charts]
 
 ---
 
@@ -42,21 +66,9 @@ https://localhost:5001/api/v1/infectado
 
 ---
 
-### ⚙ REST API
-
-| Endpoint: | Method: | Descrição: | Response Status Code: |
-|-----------|---------|--------------|-----------------------|
-| /infectado | GET  | Retorna uma lista com todos os registros. | 200 / 404 |
-| /infectado/{id} | GET | Retorna um registro específico. | 200 / 404 |
-| /infectado | POST | Cria um novo registro no sistema. | 201 / 400 |
-| /infectado/{id} | PUT | Edita um registro específico. | 200 / 404 |
-| /infectado/{id} | DELETE | Deleta um registro específico. | 204 / 404 |
-
----
-
 ### 🛠 Heroku Deploy
 
-Depois de "dockerizado", o projeto foi armazenado e publicado no registro de containers do **Heroku: Cloud Application Platform** conforme os passos abaixo:
+Depois de "dockerizado", o projeto foi armazenado e publicado no registro de containers do **Heroku** conforme os passos abaixo:
 
 #### Docker Image
 
@@ -96,8 +108,6 @@ heroku container:push -a <heroku-app-name> web
 heroku container:release -a <heroku-app-name> web
 ```
 
-⚠ Importante: Esse *app container* (free dyno) entra em modo *sleep* depois de 30 minutos de inatividade. 😴
-
 ---
 
 ### 📚 Referências
@@ -109,5 +119,6 @@ heroku container:release -a <heroku-app-name> web
 - [Heroku](https://www.heroku.com/)
 
 [heroku-deploy]:https://dio-aspnet-core-api.herokuapp.com/api/v1/infectado
+[mongodb-charts]:https://charts.mongodb.com/charts-dio-dotnet-mongo-fpurk/public/dashboards/6014de67-6de8-4e3a-8c9d-2f92492bba8b
 [heroku-cli]:https://devcenter.heroku.com/articles/heroku-cli#download-and-install
 [heroku-dash]:https://dashboard.heroku.com/apps
